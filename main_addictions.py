@@ -190,6 +190,7 @@ def gamble():
 
       if counter <= 0:
           print('You have gone bankrupt. \n Please use this as a learning lesson to stop gambling!')
+          print('Fun Fact: The National Council on Problem Gambling (NCPG) estimates that approximately 5 million Americans meet the criteria for compulsive gambling.')
           break
 
 def screen(): #Starts screen addiction.
@@ -296,13 +297,147 @@ def screen(): #Starts screen addiction.
         time.sleep(5)
         #End Game Conditions to breal loop.
         if (total_dopamine >= 100) and (day <= 7): 
-            print("Hey, you've earned over 100 dopamine within a week. \n You've become addicted to an unhealthy lifestyle. #add statistics")
+            print("Hey, you've earned over 100 dopamine within a week. \n You've become addicted to an unhealthy lifestyle. \n If you need more information please visit https://newportacademy.com/")
+            print('Fun Fact: Estimates of the prevalence of video game addiction vary, but range from 1.7% to 10% of the US population. The World Health Organization (WHO) officially classifies video game addiction as a mental health disorder.')
             break
         elif (total_dopamine < 100) and (day >= 7):
-            print("You've earned less than 100 dopamine within a week. Great Job! #add statistics")
+            print("You've earned less than 100 dopamine within a week. Great Job!")
+            print('Fun Fact: The average gamer spends 6 hours a week playing video games. 8.5% of gamers aged 8 to 18 are addicted to video games (according to a study by the American Academy of Pediatrics). In South Korea, an estimated 2 million people suffer from internet addiction, with video games being a major contributor.')
             break
 
         day += 1 #add a day after going through the loop til 7 (a week)
+
+def drugs():  # where the game begins
+    day = 1
+    life = 500
+    happiness = 0
+
+    work = [item.lower() for item in ['cleaning', 'working', 'doing homework', 'studying']]
+    substances = [item.lower() for item in ['vaping', 'smoking', 'drinking alcohol', 'sniffing meth', 'injecting heroin', 'sniffing cocaine']]
+
+    while True:
+        print(f"Day {day}...")
+        time.sleep(3)
+        print(f"Your total dopamine is {happiness}")
+        time.sleep(5)
+
+        # Morning options
+        good_start = random.choice(work)
+        bad_start = random.choice(substances)
+        cost = random.randint(0, 5)  # cost of work on your life
+        cost2 = random.randint(25, 50)  # cost of drugs on your life
+
+        while True:  # Loop until a valid choice is made
+            print(f"Choose between ({good_start}) and ({bad_start}).")
+            time.sleep(3)
+            user_choice = input('What do you do to start off your day? ').lower()
+
+            if user_choice == good_start:
+                dopamine = random.randint(50, 70)
+                print(f"You chose {good_start}.")
+                happiness += dopamine
+                life += cost
+                print(f'You gained {dopamine} dopamine from this activity.')
+                break  # Exit the loop
+            elif user_choice == bad_start:
+                dopamine = random.randint(250, 300)
+                print(f"You chose {bad_start}.")
+                happiness += dopamine
+                life -= cost2
+                print(f'You gained {dopamine} dopamine from this activity.')
+                break  # Exit the loop
+            else:
+                print("Invalid choice! Choose between the items listed.")
+
+        time.sleep(3)
+        print("The morning has passed and you figure out how to spend your free time.")
+        time.sleep(3)
+
+        # Middle of the day options
+        good_middle = random.choice(work)
+        bad_middle = random.choice(substances)
+        cost = random.randint(0, 5)  # work cost
+        cost2 = random.randint(25, 50)  # substance cost
+
+        while True:  # Loop until a valid choice is made
+            print(f"Choose between ({good_middle}) and ({bad_middle}).")
+            user_choice = input('What do you feel like doing? ').lower()
+
+            if user_choice == good_middle:
+                dopamine = random.randint(50, 70)
+                print(f"You chose {good_middle}.")
+                happiness += dopamine
+                life += cost
+                print(f'You gained {dopamine} dopamine from this activity.')
+                break  # Exit the loop
+            elif user_choice == bad_middle:
+                dopamine = random.randint(250, 300)
+                print(f"You chose {bad_middle}.")
+                happiness += dopamine
+                life -= cost2
+                print(f'You gained {dopamine} dopamine from this activity.')
+                break  # Exit the loop
+            else:
+                print("Invalid choice! Choose between the items listed.")
+
+        time.sleep(3)
+        print('Noon has passed. Evening is approaching.')
+        time.sleep(3)
+
+        # End of the day options
+        good_end = random.choice(work)
+        bad_end = random.choice(substances)
+        cost = random.randint(0, 5)  # work cost
+        cost2 = random.randint(50, 100)  # substance cost
+
+        while True:  # Loop until a valid choice is made
+            print(f"Choose between ({good_end}) and ({bad_end}).")
+            user_choice = input('What do you feel like doing? ').lower()
+
+            if user_choice == good_end:
+                dopamine = random.randint(50, 70)
+                print(f"You chose {good_end}.")
+                happiness += dopamine
+                life += cost
+                print(f'You gained {dopamine} dopamine from this activity.')
+                break  # Exit the loop
+            elif user_choice == bad_end:
+                dopamine = random.randint(500, 600)
+                print(f"You chose {bad_end}.")
+                happiness += dopamine
+                life -= cost2
+                print(f'You gained {dopamine} dopamine from this activity.')
+                break  # Exit the loop
+            else:
+                print("Invalid choice! Choose between the items listed.")
+
+        time.sleep(3)
+        print(f"Day {day} is over... \n You've gained a total of {happiness} dopamine today.")
+        time.sleep(3)
+        print('Resting...')
+        time.sleep(5)
+
+        if (life <= 0) and (day <= 7):
+            print("You didn't get so lucky this time and passed out. While you were bedridden, you died of a heart attack. \nThe risk isn't worth the small reward. Would you like to know more?")
+            time.sleep(2)
+            choice = input("Yes or No: ")
+        elif (life >= 0) and (day >= 7):
+            print("You managed to survive the week, but some people aren't as lucky. \nWould you like to know more about statistics?")
+            time.sleep(2)
+            choice = input("Yes or No: ")
+
+            if choice.lower() == 'yes':
+                print("According to the NCDAS, almost 100,000 people die of overdose every year. \nOpiates cause the most deaths out of any substance. \nMen are more likely to die of overdose than women.")
+                time.sleep(1)
+                print("For more info, go to https://drugabusestatistics.org/")
+                time.sleep(1)
+                print("Thank you for playing!")
+                break
+            else:
+                print("Okay, no worries! \n Thank you for playing!")
+                break
+
+        day += 1  # Increment day at the end of the loop
 
 #Cool title screen
 print("""
@@ -318,12 +453,12 @@ d88P     888 8888888P"  8888888P" 8888888 "Y8888P"     888     8888888 "Y88888P"
 
 
 """)
-print("Please pick what addiction you're suffering from. \nChoose from the following options: \nSubstance, Gambling, Food, Gaming, Masturbation")
+print("Please pick what addiction you're suffering from. \nChoose from the following options: \nSubstance, Gambling, Food, Screen")
 
 while True: #Addictions to pick from and goes through that function which executes the simulatior code.
     choice = input("Enter your choice: ")
     if (choice == 'substance' or choice == 'Substance'):
-        print("You're suffering from Substance addiction.")
+        drugs()
         break
     elif (choice == 'gambling' or choice == 'Gambling'):
         gamble()
