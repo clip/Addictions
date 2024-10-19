@@ -5,15 +5,15 @@ import random
 import time
 
 # Food Addiction Simulation
-def food():
+def food(): #Starts the food addiction game.
     day = 1
     budget = 500
-    total_calories = 0
+    total_calories = 0 #variables for a counter that works with while true.
 
     healthy_items = [item.lower() for item in ['Salad', 'Fruit', 'Grilled Chicken', 'Quinoa', 'Veggies']]
-    unhealthy_items = [item.lower() for item in ['Pizza', 'Burger', 'Soda', 'Fried Chicken', 'Candy']]
+    unhealthy_items = [item.lower() for item in ['Pizza', 'Burger', 'Soda', 'Fried Chicken', 'Candy']] #for loop to go through and loop all the items to be shortened.
 
-    while True:
+    while True: #repeated day night cycle.
         print(f"Day {day}...")
         time.sleep(3)
         print(f"It's morning! Time for breakfast. \nYour balance is ${budget}.")
@@ -26,7 +26,7 @@ def food():
         cost = random.randint(8, 20)  # Healthy food cost
         cost2 = random.randint(2, 10)  # Unhealthy food cost
 
-        while True:  # Validate user choice
+        while True:  # Make sure User Choice is valid.
             print(f"Choose between ${cost} {healthy_choice_breakfast} and ${cost2} {unhealthy_choice_breakfast}.")
             user_choice = input('What are you craving? ').lower()
 
@@ -58,7 +58,7 @@ def food():
         cost = random.randint(8, 20)  # Healthy food cost
         cost2 = random.randint(2, 10)  # Unhealthy food cost
 
-        while True:  # Validate user choice
+        while True:  # Validate choice
             print(f"Choose between ${cost} {healthy_choice_lunch} and ${cost2} {unhealthy_choice_lunch}.")
             user_choice = input('What are you craving? ').lower()
 
@@ -90,7 +90,7 @@ def food():
         cost = random.randint(8, 20)  # Healthy food cost
         cost2 = random.randint(2, 10)  # Unhealthy food cost
 
-        while True:  # Validate user choice
+        while True:  # Validate choice
             print(f"Choose between ${cost} {healthy_choice_dinner} and ${cost2} {unhealthy_choice_dinner}.")
             user_choice = input('What are you craving? ').lower()
 
@@ -114,10 +114,10 @@ def food():
         time.sleep(3)
         print(f"Day {day} is over...")
         time.sleep(3)
-        print('Resting...')
+        print('Resting...') #day is over and cycles.
         time.sleep(5)
 
-        # End game conditions
+        # Checks for End game conditions to break while loop and brings up statistics to show the user how the addiction works.
         if (total_calories >= 10000) and (day <= 7):
             print("Hey! You've gained more than 10,000 calories within a week!")
             time.sleep(2)
@@ -150,7 +150,7 @@ def food():
         day += 1  # Increment day at the end of the loop
 
 def gamble():
-    total = 0
+    total = 0 #variables to check
     win = 0
     lose = 0
     counter = 1000
@@ -158,24 +158,23 @@ def gamble():
     print('type 100 any time in the inputs to learn about your statistics!')
     print('A win is worth $180 and a loss is worth -$60')
 
-    while counter >= 0:
-
-      if total > 0:
+    while counter >= 0: #Makes sure that for statistics its not doing 0 / 0 which causes an error.
+    
+      if total > 0: #Win rate
           calculate_wr = round((win / total) * 100, 2)
       else:
-          calculate_wr = 0.0  # Or handle it as needed
-
-      # Calculate Loss Rate
-      if total > 0:
+          calculate_wr = 0.0  
+          
+      if total > 0: #Loss rate
           calculate_lr = round((lose / total) * 100, 2)
       else:
-          calculate_lr = 0.0  # Or handle it as needed
+          calculate_lr = 0.0 
 
       print('$:', counter)
       user_guess = int(input('Guess: '))
       total += 1
       Random_number = (random.randint(1, 10))
-      if user_guess == Random_number:
+      if user_guess == Random_number: #Modify variables if user wins/losses etc.
           counter += 180
           print('the selected number was', Random_number)
           print('You gained 180 dollars.')
@@ -193,7 +192,7 @@ def gamble():
           print('You have gone bankrupt. \n Please use this as a learning lesson to stop gambling!')
           break
 
-def game():
+def screen(): #Starts screen addiction.
     total_hours = 0
     total_dopamine = 0
     day = 1
@@ -217,7 +216,7 @@ def game():
                 hours = random.randint(1, 3)
                 dopamine = random.randint(1, 5)
                 print(f'You will be spending {hours} hours today on {healthy_choice_morning}.\n Dopamine + {dopamine}.')
-                total_hours += hours
+                total_hours += hours #adds to counter
                 total_dopamine += dopamine
                 break
             elif choice == unhealthy_choice_morning:
@@ -241,14 +240,14 @@ def game():
         while True:  # Keep asking until a valid input
             choice = input(f'Do you want to {healthy_choice_noon} or {unhealthy_choice_noon}? ').lower()
 
-            if choice == healthy_choice_noon:
+            if choice == healthy_choice_noon: #if the choice is healthy execute.
                 hours = random.randint(1, 3)
                 dopamine = random.randint(1, 5)
                 print(f'You will be spending {hours} hours today on {healthy_choice_noon}.\n Dopamine + {dopamine}.')
                 total_hours += hours
                 total_dopamine += dopamine
                 break
-            elif choice == unhealthy_choice_noon:
+            elif choice == unhealthy_choice_noon: #if the choice is unhealthy execute.
                 hours = random.randint(4, 10)
                 dopamine = random.randint(10, 25)
                 print(f'You will be spending {hours} hours today on {unhealthy_choice_noon}.\n Dopamine + {dopamine}.')
@@ -295,16 +294,17 @@ def game():
         time.sleep(1)
         print('Resting...')
         time.sleep(5)
-
-        if (total_dopamine >= 100) and (day <= 7):
+        #End Game Conditions to breal loop.
+        if (total_dopamine >= 100) and (day <= 7): 
             print("Hey, you've earned over 100 dopamine within a week. \n You've become addicted to an unhealthy lifestyle. #add statistics")
             break
         elif (total_dopamine < 100) and (day >= 7):
             print("You've earned less than 100 dopamine within a week. Great Job! #add statistics")
             break
 
-        day += 1
+        day += 1 #add a day after going through the loop til 7 (a week)
 
+#Cool title screen
 print("""
        d8888 8888888b.  8888888b. 8888888 .d8888b. 88888888888 8888888 .d88888b.  888b    888  .d8888b.
       d88888 888  "Y88b 888  "Y88b  888  d88P  Y88b    888       888  d88P" "Y88b 8888b   888 d88P  Y88b
@@ -320,7 +320,7 @@ d88P     888 8888888P"  8888888P" 8888888 "Y8888P"     888     8888888 "Y88888P"
 """)
 print("Please pick what addiction you're suffering from. \nChoose from the following options: \nSubstance, Gambling, Food, Gaming, Masturbation")
 
-while True:
+while True: #Addictions to pick from and goes through that function which executes the simulatior code.
     choice = input("Enter your choice: ")
     if (choice == 'substance' or choice == 'Substance'):
         print("You're suffering from Substance addiction.")
@@ -331,8 +331,8 @@ while True:
     elif (choice == 'food' or choice == 'Food'):
         food()
         break
-    elif (choice == 'gaming' or choice == 'Gaming'):
-        game()
+    elif (choice == 'screen' or choice == 'Screen'):
+        screen()
         break
     else:
         print("Invalid choice. Please try again.")
